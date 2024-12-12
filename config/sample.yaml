@@ -1,0 +1,31 @@
+expname: sample_SHAFT_megnet_small_test
+# metadata specialised for each experiment
+core:
+  version: 0.0.1
+  tags:
+    - ${now:%Y-%m-%d}
+
+hydra:
+  run:
+    dir: /home/minhtrin/Code/Generative/SHAFT/hydra/singlerun/2024-01-29/SHAFT_megnet_small_test_reward_pref_bond_dict_2024-01-29-23-06-15
+
+  sweep:
+    dir: ${oc.env:HYDRA_JOBS}/multirun/${now:%Y-%m-%d-%H-%M-%S}/${expname}/
+    subdir: ${hydra.job.num}_${hydra.job.id}
+
+  job:
+    env_set:
+      WANDB_START_METHOD: thread
+      WANDB_DIR: ${oc.env:WABDB_DIR}
+
+defaults:
+  - train: default
+  # - SHAFT: graph
+  # - SHAFT: mlp
+  # - SHAFT: dnpp
+  # - SHAFT: megnet_small_test
+  - SHAFT: gcn_small_test
+  # - gflownet: megnet
+  # - gflownet: megnet_small_test
+#    Decomment this parameter to get parallel job running
+  # - override hydra/launcher: joblib

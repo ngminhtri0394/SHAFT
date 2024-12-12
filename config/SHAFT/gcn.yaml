@@ -1,0 +1,37 @@
+SHAFT:
+  _target_: pl_modules.SHAFT.SHAFT
+  max_blocks: 2
+  device: cuda:0
+  lr: 0.001
+  lr_Z: 0.1
+  scheduler_milestone: 5000
+  gamma_scheduler: 1.0
+  initlogZ: 0.0
+  n_iterations: 1000000
+  alpha_schedule: 1.0
+  alpha: 1.0
+  clampmin: -10.0
+  clampmax: 10.0
+  batch_size: 8
+  save_freq: 100
+  use_pretrain: false
+  phidden_dim: 32
+  pretrain_model_name: alignn
+  proxy_model: M3GNet-MP-2018.6.1-Eform
+  with_stop: true
+  min_stop: 1
+  policy_nn: graph_gcn
+  ele_set: battery
+  max_ele: 2
+  req_ele:
+  - Li
+  - Na
+  - K
+  max_atom: 200
+  vpen_min: 0.1
+  vpen_max: 0.1
+  vpen_minmax: 0.01
+  reward: reward_pref_bond_dict
+  reward_beta: 8
+  singlesg: false
+  reward_min: 1.0e-05
