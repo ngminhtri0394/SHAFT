@@ -33,7 +33,7 @@ def parallel_loading(idx):
 
 # Parse command-line arguments
 parser = argparse.ArgumentParser(description='Process sampling parameters.')
-parser.add_argument('--k', type=int, default=100, help='Number of top structures to save')
+parser.add_argument('--k', type=int, default=100, help='Number of top-k structures to save')
 parser.add_argument('--path', type=str, required=True, help='Path to the data directory')
 parser.add_argument('--last_idx', type=int, default=45000, help='Last index to process')
 parser.add_argument('--traj_length', type=int, default=3, help='Minimum trajectory length')

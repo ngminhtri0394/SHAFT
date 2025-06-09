@@ -17,7 +17,7 @@ import matgl
 from pl_modules.reward import *
 
 parser = argparse.ArgumentParser(description='Evaluate all metrics')
-parser.add_argument('--directory', type=str, required=True, help='Directory containing structure files')
+parser.add_argument('--d', type=str, required=True, help='Directory containing structure files')
 args = parser.parse_args()
 
 directory_in_str = args.directory
@@ -101,3 +101,5 @@ def match_rate_eval():
     print('Average dist: ', rmss.sum()/len(rmss))
 
 
+form_e_eval()
+match_rate_eval()

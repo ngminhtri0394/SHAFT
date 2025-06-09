@@ -28,6 +28,12 @@ To get started with SHAFT, you'll need to create a conda environment with all th
 
 ---
 
+## Data
+
+The `MP_Battery` dataset is used to train CDVAE (https://github.com/txie-93/cdvae) and DiffCSP (https://github.com/jiaor17/DiffCSP). More details about training custom dataset is available at CDVAE and DiffCSP.
+
+The `Sampled_structure` and `DFT_optimized` are sampled structures of SHAFT and their DFT-optimized structure discussed in Section 5.1.7. 
+
 ## Usage
 
 The main script for training the SHAFT model is `train_SHAFT.py`. This script uses Hydra for configuration management, making it easy to customize the training process.
@@ -42,3 +48,22 @@ python train_SHAFT.py
 ```
 The sampled crytal structure will be saved at `hydra/singlerun/date/SHAFT_date/saved_data/`, the policy model are saved at `hydra/singlerun/date/SHAFT_date/saved_data/`
 
+
+### Getting sampled crystal structures
+
+Crystal structures sampled during the traing can be retrieved by:
+
+```bash
+python get_sampled_train_crys.py --k <topK> --path <path to hydra saved data> --last_idx <idx of last saved data> --traj_length <trajectory length T>
+```
+
+### Crystal structure relaxation using M3GNet PES model
+
+```bash
+python paralel_optimize.py --d <path to sampled cif files> --k <top K to process>
+```
+
+### Evaluate metrics
+```bash
+python eval_all_metrics.py --d <path to sampled cif files> 
+```

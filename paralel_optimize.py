@@ -30,8 +30,8 @@ def optimize_m3gnet(name):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Parallel M3GNet optimization")
-    parser.add_argument("directory", type=str, help="Directory path containing CIF files")
-    parser.add_argument("topk", type=int, help="Number of top files to process")
+    parser.add_argument("--d", type=str, help="Directory path containing CIF files")
+    parser.add_argument("--k", type=int, help="Number of top files to process")
     args = parser.parse_args()
     directory_in_str = args.directory
     topk = args.topk
