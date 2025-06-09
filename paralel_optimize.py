@@ -4,6 +4,8 @@ from m3gnet.models import Relaxer
 from pymatgen.core import Lattice, Structure
 import os
 import multiprocessing as mp
+import sys
+import argparse
 
 for category in (UserWarning, DeprecationWarning):
     warnings.filterwarnings("ignore", category=category, module="tensorflow")
@@ -26,13 +28,18 @@ def optimize_m3gnet(name):
     final_structure.to(filename=directory_in_str+'optimized'+'/'+name+'_optimized.cif')
     
 
-# Init a Mo structure with stretched lattice (DFT lattice constant ~ 3.168)
-
-directory_in_str = 'my/dir/path/'
-if not os.path.isdir(directory_in_str+'optimized/'):
-    os.makedirs(directory_in_str+'optimized/')
-filenames = ['top_'+str(i)+'.cif' for i in range(100)]
-
-pool = mp.Pool(mp.cpu_count())
-results = pool.map(optimize_m3gnet,filenames) 
-pool.close()
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Parallel M3GNet optimization")
+    parser.add_argument("directory", type=str, help="Directory path containing CIF files")
+    parser.add_argument("topk", type=int, help="Number of top files to process")
+    args = parser.parse_args()
+    directory_in_str = args.directory
+    topk = args.topk
+    if not directory_in_str.endswith('/'):
+        directory_in_str += '/'
+    if not os.path.isdir(directory_in_str+'optimized/'):
+        os.makedirs(directory_in_str+'optimized/')
+    filenames = ['top_'+str(i)+'.cif' for i in range(topk)]
+    pool = mp.Pool(mp.cpu_count())
+    results = pool.map(optimize_m3gnet,filenames) 
+    pool.close()
