@@ -1,7 +1,6 @@
 import copy
 from sampling.action_sampling import *
-from env.graph_crystal_env import HierCrystalEnv
-from env.mlp_crystal_env import MLPHierCrystalEnv
+from env.graph_crystal_env import HierGraphCrystalEnv
 
 
 class BaseTrajectoriesSampler:
@@ -9,7 +8,7 @@ class BaseTrajectoriesSampler:
                  req_config: List,
                  action_sampler: ActionsSampler,
                  bwaction_sampler: BackwardActionsSampler,
-                 env: HierCrystalEnv = None,
+                 env: HierGraphCrystalEnv = None,
                  device = torch.device('cuda'),
                  max_blocks = 4) -> None:
         self.req_config = req_config
@@ -37,7 +36,7 @@ class TrajectoriesSampler(BaseTrajectoriesSampler):
                  req_config,
                  action_sampler: HierarchicalActionSampler,
                  bwaction_sampler: BackwardActionsSampler,
-                 env: HierCrystalEnv = None,
+                 env: HierGraphCrystalEnv = None,
                  device = torch.device('cuda'),
                  max_blocks = 20,
                  min_stop = 4) -> None:

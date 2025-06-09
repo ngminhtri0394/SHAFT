@@ -1,5 +1,4 @@
-from policy.graph_backbone import GCNBackbone, DimeNetPlusPlusBackbone
-from policy.backbone import MLPPolicyBackbone
+from policy.graph_backbone import GCNBackbone
 from torch.distributions import Categorical, Bernoulli
 import torch.nn as nn
 import torch 

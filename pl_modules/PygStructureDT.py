@@ -1,5 +1,5 @@
 from pymatgen.io.jarvis import JarvisAtomsAdaptor
-from matformer.models.pyg_att import Matformer
+# from matformer.models.pyg_att import Matformer
 import torch
 from pl_modules.graphs import PygGraph
 from re import X

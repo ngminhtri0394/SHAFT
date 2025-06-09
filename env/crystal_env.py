@@ -9,7 +9,7 @@ import math
 from alignn.data import get_torch_dataset
 from torch.utils.data import DataLoader
 from pymatgen.io.jarvis import JarvisAtomsAdaptor
-from pl_modules.policy_align import ALIGNN, ALIGNNConfig
+# from pl_modules.policy_align import ALIGNN, ALIGNNConfig
 from tqdm import tqdm
 import tempfile
 from pl_modules.graphs import PygGraph as CPygGraph

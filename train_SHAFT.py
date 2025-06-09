@@ -19,8 +19,8 @@ def run(cfg: DictConfig) -> None:
         seed_everything(cfg.train.random_seed)
 
     print('Instantiate SHAFT')
-    gflownet = hydra.utils.instantiate(cfg.SHAFT.SHAFT)
-    gflownet.train_model_with_proxy()
+    shaft = hydra.utils.instantiate(cfg.SHAFT.SHAFT)
+    shaft.train_model_with_proxy()
 
 @hydra.main(config_path=str(PROJECT_ROOT / "config"), config_name="generative")
 def main(cfg: omegaconf.DictConfig):
